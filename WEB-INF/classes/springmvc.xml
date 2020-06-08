@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd 
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd 
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!--开启注解扫描-->
+<context:component-scan base-package="com.lzy">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+    <!--视图解析器-->
+    <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="suffix" value=".jsp"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+    </bean>
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    </bean>
+    <!-- 设置静态资源不过滤 -->
+    <mvc:resources location="/css/" mapping="/css/**" />
+    <mvc:resources location="/images/" mapping="/images/**" />
+    <mvc:resources location="/photos/" mapping="/photos/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/fonts/" mapping="/fonts/**"/>
+    <!--开启springMVC注解-->
+    <mvc:annotation-driven/>
+    
+        
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login.html"/>
+            <mvc:exclude-mapping path="/index.jsp"/>
+            <mvc:exclude-mapping path="/login/login"/>
+            <bean class="com.lzy.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+    <!--启用默认servlet-->
+    <mvc:default-servlet-handler/>
+
+    <mvc:view-controller path="/" view-name="redirect:/anno/findAnno" />
+</beans>

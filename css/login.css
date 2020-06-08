@@ -1,0 +1,28 @@
+.login-form {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    min-height: 300px;
+    height: auto;
+
+    border-radius:10px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items:center;
+}
+.login-form-bg{
+    background: rgba(7, 0, 255, 0.5);
+}
+.flex{
+    flex: auto;
+}
+.btn-size{
+    width: 239px;
+}
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0"
+         metadata-complete="false"
+       >
+  <welcome-file-list>
+    <welcome-file>/</welcome-file>
+  </welcome-file-list>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <!--中文乱码过滤器-->
+  <filter>
+    <filter-name>characterEncodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>characterEncodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <!--监听器加载applicationContext文件-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.js</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.css</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  <servlet-name>default</servlet-name>
+  <url-pattern>/images/*</url-pattern>
+</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>/photos/*</url-pattern>
+  </servlet-mapping>
+
+
+
+ <servlet>
+    <servlet-name>info</servlet-name>
+    <jsp-file>/WEB-INF/jsp/info.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>info</servlet-name>
+    <url-pattern>/info</url-pattern>
+  </servlet-mapping>
+  <!--
+ <servlet>
+   <servlet-name>welcome</servlet-name>
+   <jsp-file>/WEB-INF/jsp/welcome.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+   <servlet-name>welcome</servlet-name>
+   <url-pattern>/welcome</url-pattern>
+ </servlet-mapping>
+ <servlet>
+   <servlet-name>nav</servlet-name>
+   <jsp-file>/WEB-INF/jsp/nav.jsp</jsp-file>
+ </servlet>
+ <servlet-mapping>
+   <servlet-name>nav</servlet-name>
+   <url-pattern>/nav</url-pattern>
+ </servlet-mapping>-->
+
+
+
+  <!--配置前端控制器-->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!--加载springMVC配置文件-->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
