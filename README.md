@@ -1,0 +1,6 @@
+# DormitoryManagementSystem
+实现人脸识别门禁的宿舍管理系统
+使用Opencv中的特征脸算法实现人脸识别
+前端使用Bootstrap框架
+后端使用SSM
+数据库MySQL
